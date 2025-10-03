@@ -1,0 +1,9 @@
+[
+  {
+    "id": "user_id",
+    "name": "User Name",
+    "email": "user@example.com",
+    "loginProvider": "privy",
+    "createdAt": "2025-10-01T00:00:00Z"
+  }
+]

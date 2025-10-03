@@ -1,0 +1,101 @@
+/* Flex layout for dashboard main area */
+.dashboard-main-flex {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+body {
+  --bg: #18191a;
+  --bg-card: #23272f;
+  --text: #f5f5f5;
+  --text-secondary: #bdbdbd;
+  --primary: #ff9800;
+  --primary-hover: #e68900;
+  --border: #23272f;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.light-theme {
+  --bg: #f3f6fa;
+  --bg-card: #fafdff;
+  --text: #23272f;
+  --text-secondary: #888;
+  --primary: #ff9800;
+  --primary-hover: #e68900;
+  --border: #e3e8ee;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn, .btn-sm, .btn-outline-secondary, .btn-outline-primary, .btn-secondary {
+  color: var(--text);
+}
+
+.navbar {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+
+aside {
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.btn-primary {
+  background-color: #ff9800;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #e68900;
+}
+
+/* SidePanel */
+/* Remove duplicate aside style or keep only the above for consistency */
+
+/* Responsive grid */
+@media (max-width: 768px) {
+  aside {
+    position: static !important;
+    min-width: 100% !important;
+    height: auto !important;
+  }
+  main {
+    margin-left: 0 !important;
+  }
+}

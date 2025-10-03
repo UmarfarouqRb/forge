@@ -1,0 +1,233 @@
+/* Wallet balance header */
+.swap-balance-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  padding: 8px 12px 4px 8px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 1px 4px #0001;
+}
+.swap-balance-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.swap-balance-label {
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
+.swap-balance-value {
+  font-size: 16px;
+  color: #23272f;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.modern-swap-section {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 18px;
+  padding: 18px 0 12px 0;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+  border: 1.5px solid rgba(200, 200, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+}
+.modern-swap-section:hover, .modern-swap-section:focus-within {
+  box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.16), 0 2px 12px 0 rgba(0,0,0,0.08);
+  border: 1.5px solid #bfc9da;
+  background: rgba(255,255,255,0.92);
+}
+
+.swap-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 4px #0001;
+  margin-bottom: 6px;
+}
+
+.swap-token-select-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f6f6f6;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.modern-token-select {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #23272f;
+  outline: none;
+  padding: 0 4px;
+  min-width: 60px;
+  cursor: pointer;
+}
+
+.modern-amount-input {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #23272f;
+  text-align: right;
+  width: 100%;
+  outline: none;
+  padding: 0 4px;
+}
+
+.swap-input-label {
+  font-size: 14px;
+  color: #888;
+  font-weight: 600;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+.swap-network-toggle {
+  display: flex;
+  gap: 8px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #fefafa;
+  padding: 4px 8px;
+}
+.swap-network-toggle button {
+  background: none;
+  border: none;
+  color: #bfc9da;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.swap-network-toggle button.active {
+  background: linear-gradient(90deg, #3b3be9 0%, #eddec8 100%);
+  color: #23272f;
+  border-radius: 4px;
+}
+.swap-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 0 10px;
+}
+
+.swap-title {
+  text-align: center;
+  color: #eddec8;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.swap-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+  padding: 28px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.swap-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 0;
+}
+
+.swap-label {
+  color: #bfc9da;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.swap-token-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swap-token-select {
+  background: #fff;
+  color: #23272f;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+}
+
+.swap-token-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+}
+
+.swap-amount-input {
+  background: #fff;
+  color: #23272f;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+}
+
+.swap-switch-btn {
+  align-self: center;
+  background: #fff;
+  color: #23272f;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.swap-switch-btn:hover {
+  background: #f5f5f5;
+}
+
+.swap-action-btn {
+  background: #ede7f6;
+  color: #23272f;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.swap-action-btn:disabled {
+  background: #ede7f6;
+  color: #bfc9da;
+  cursor: not-allowed;
+}

@@ -1,0 +1,104 @@
+.fade-in {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dashboard sidebar custom styles */
+/* Sidebar uses theme variables */
+.dashboard-sidebar {
+  background: var(--bg-card) !important;
+  color: var(--text) !important;
+  min-height: 100vh;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: 100vh;
+}
+.dashboard-sidebar .nav-link {
+  color: var(--text-secondary, #bfc9da) !important;
+  transition: background 0.2s, color 0.2s;
+}
+.dashboard-sidebar .nav-link.active,
+.dashboard-sidebar .nav-link:focus,
+.dashboard-sidebar .nav-link:hover {
+  background: var(--bg, #23272f) !important;
+  color: var(--text, #fff) !important;
+}
+.dashboard-sidebar .nav-item {
+  margin-bottom: 0.5rem;
+}
+
+/* UserProfile link style */
+.dashboard-profile-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: box-shadow 0.2s;
+}
+.dashboard-profile-link:hover {
+  box-shadow: 0 0 0 2px #e5a44333;
+  background: var(--bg, #23272f);
+  color: var(--text, #eddec8);
+  border-radius: 8px;
+}
+
+
+body, .dashboard-bg {
+  background: var(--bg) !important;
+  color: var(--text);
+}
+
+
+/* Always keep sidebar on the left */
+.dashboard-main-flex {
+  display: flex;
+  flex-direction: row !important;
+  width: 100%;
+  min-height: 100vh;
+}
+.dashboard-sidebar {
+  width: 220px !important;
+  min-width: 180px;
+  max-width: 260px;
+  border-right: 1px solid var(--border);
+  border-bottom: none !important;
+  flex-direction: column !important;
+  flex-shrink: 0;
+  height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+.dashboard-sidebar .nav {
+  flex-direction: column !important;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+}
+.dashboard-sidebar .nav-item {
+  margin-bottom: 0.5rem;
+  margin-right: 0;
+}
+.dashboard-sidebar .nav-link {
+  width: 100% !important;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.7rem;
+}
+.dashboard-profile-link {
+  margin: 0.5rem 0;
+}
+main.flex-grow-1 {
+  flex: 1 1 0%;
+  min-width: 0;
+  padding: 1rem;
+}
