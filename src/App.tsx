@@ -9,7 +9,7 @@ import Deposit from './pages/Deposit';
 import Withdraw from './pages/Withdraw';
 import History from './pages/History';
 
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import './App.css';
 import './providers/Login.css';
 

@@ -127,7 +127,10 @@ const Profile: React.FC = () => {
               </p>
             )}
             <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => setEdit(true)}>Edit Profile</button>
-            <button className="btn btn-outline-danger btn-sm mt-2" onClick={logout}>Logout</button>
+            <button className="btn btn-outline-danger btn-sm mt-2" onClick={async () => {
+              await logout();
+              navigate('/dashboard');
+            }}>Logout</button>
           </>
         )}
       </div>

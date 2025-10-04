@@ -11,7 +11,7 @@ const Perp: React.FC = () => (
     <p style={{ maxWidth: 400, marginBottom: 24, color: '#555', fontSize: '1rem' }}>
       Trade crypto perps with ease. Our AI agents guide you pick markets set leverage and manage risk <br/>making perp trading simple for everyone.
     </p>
-    <img src="/perp-light.png" alt="Perp" style={{ maxWidth: '100%', maxHeight: '60vh' }} />
+  <img src="/perp-light.png" alt="Perp" loading="lazy" style={{ maxWidth: '100%', maxHeight: '60vh' }} />
   </div>
 );
 

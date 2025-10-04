@@ -51,7 +51,7 @@ export function arrangeQuestsByStatus(quests: QuestItem[]) {
 
 
 import React, { useState, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 // If using react-router-dom, import Link
 // import { Link, useNavigate } from 'react-router-dom';
 import UserProfile from '../components/UserProfile';
@@ -61,8 +61,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import Card from '../components/Card';
 import QuestList from '../components/QuestList';
-
-
+import LeaderboardCard from '../components/LeaderboardCard';
 
 // Leaderboard will be fetched from backend
 
@@ -97,7 +96,7 @@ const Quest: React.FC = () => {
   const statusOptions = ['active', 'upcoming', 'ended'] as const;
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const location = useLocation();
-  // Removed unused navigate
+  const navigate = useNavigate();
   // Parse section and status from URL query params
   function getSectionIdxFromQuery(): number {
     const params = new URLSearchParams(location.search);
@@ -143,7 +142,7 @@ const Quest: React.FC = () => {
   const navInactiveText = isDark ? 'var(--text)' : '#23272f';
   return (
     <div style={{ background: bg, minHeight: '100vh', padding: '32px 0', color: text }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 32 }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
         {/* Left: User Profile and Quest Lists */}
         <div style={{ flex: 2 }}>
           {/* User Profile (customized) */}
@@ -215,7 +214,7 @@ const Quest: React.FC = () => {
                         setSelectedSection(idx);
                         setOpenDropdown(isOpen ? null : idx);
                       }}
-                      onBlur={() => setOpenDropdown(null)}
+                      onBlur={() => navigate('/dashboard', { replace: true })}
                       tabIndex={isActive ? 0 : -1}
                     >
                       {label}
@@ -245,7 +244,7 @@ const Quest: React.FC = () => {
                           overflow: 'hidden',
                         }}
                         tabIndex={-1}
-                        onMouseLeave={() => setOpenDropdown(null)}
+                        onMouseLeave={() => navigate('/dashboard', { replace: true })}
                       >
                         {statusOptions.map((status) => {
                           const section = headerLabels[idx].toLowerCase();
@@ -298,25 +297,10 @@ const Quest: React.FC = () => {
             <QuestList quests={filterQuests(selectedSection, selectedStatus)} status={selectedStatus} />
           </div>
         </div>
-        {/* Right: Leaderboard (hidden) */}
-        {/*
-        <div style={{ flex: 1, minWidth: 260 }}>
-          <Card style={{ background: cardBg, color: text, border, boxShadow: navShadow }}>
-            <h3 style={{ color: navActiveText, fontWeight: 700, marginBottom: 18 }}>Leaderboard</h3>
-            <ol style={{ paddingLeft: 20, margin: 0 }}>
-              {leaderboard.length === 0 ? (
-                <li style={{ color: faded, fontStyle: 'italic', padding: 12 }}>No leaderboard data.</li>
-              ) : (
-                leaderboard.map(user => (
-                  <li key={user.name} style={{ marginBottom: 10, fontWeight: user.name === 'Explorer' ? 300 : 200, color: user.name === 'Explorer' ? navActiveText : text }}>
-                    {user.name} <span style={{ color: faded, fontWeight: 400 }}>({user.points} pts)</span>
-                  </li>
-                ))
-              )}
-            </ol>
-          </Card>
+        {/* Right: Leaderboard Card */}
+        <div style={{ flex: 1, minWidth: 260, display: 'flex', justifyContent: 'flex-end' }}>
+          <LeaderboardCard />
         </div>
-        */}
       </div>
     </div>
   );

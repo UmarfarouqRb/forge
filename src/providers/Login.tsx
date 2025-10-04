@@ -25,9 +25,12 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     </UserContext.Provider>
   );
 };
+import { useNavigate } from 'react-router-dom';
+
 const Login: React.FC = () => {
 	const { login, ready, user } = usePrivy();
 	const [modal, setModal] = useState<{ show: boolean; message: string }>({ show: false, message: '' });
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (user) {
@@ -58,8 +61,10 @@ const Login: React.FC = () => {
 						setModal({ show: true, message: err.message });
 					});
 			}
+			// Redirect to dashboard after login
+			navigate('/dashboard');
 		}
-	}, [user]);
+	}, [user, navigate]);
 
 	if (!ready) {
 		return (
@@ -94,7 +99,6 @@ const Login: React.FC = () => {
 					<h4 style={{ color: '#23272f', fontWeight: 700 }}>{displayName}</h4>
 				</div>
 			)}
-	     
 			<h2 className="mb-4" style={{ color: '#a47be2ff' }}>Login to Forge</h2>
 			<button className="btn btn-primary" style={{ fontSize: 20, backgroundColor: '#a47be2ff', color: '#d6d3e8ff', padding: '12px 36px', borderRadius: 8, border: 'none' }} onClick={login}>
 				Login with Privy

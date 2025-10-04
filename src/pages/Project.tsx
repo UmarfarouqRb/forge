@@ -5,7 +5,7 @@ import Reward from './Reward';
 
 const Project: React.FC = () => (
   <section className="container py-4">
-  <h2 className="mb-4" style={{ color: '#131214ff', fontWeight: 700, fontSize: 32 }}>Featured Projects</h2>
+  <h2 className="mb-4" style={{ color: '#e4dcecff', fontWeight: 700, fontSize: 32 }}>Featured Projects</h2>
   <div className="row g-1">
     {projectData.map((project) => (
       <div key={project.id} className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">

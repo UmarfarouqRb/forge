@@ -15,7 +15,7 @@ export interface ProjectProfileProps {
 
 const defaultImage = 'https://ui-avatars.com/api/?name=Project&background=random';
 
-const ProjectProfile: React.FC<ProjectProfileProps> = ({ name, image, users, description, category }) => {
+const ProjectProfile: React.FC<ProjectProfileProps> = ({ name, image, description, category }) => {
   const [userCount, setUserCount] = React.useState<string[]>(['123']);
   const [likeCount, setLikeCount] = React.useState<string[]>(['20']);
   const [watchCount, setWatchCount] = React.useState<string[]>(['10']);
@@ -24,6 +24,7 @@ const ProjectProfile: React.FC<ProjectProfileProps> = ({ name, image, users, des
       <img
         src={image || defaultImage}
         alt={name}
+        loading="lazy"
         className="rounded"
         style={{
           width: '100%', maxWidth: 140, height: 'auto', aspectRatio: '1/1', objectFit: 'cover', background: '#eee', borderRadius: 12, marginBottom: 18

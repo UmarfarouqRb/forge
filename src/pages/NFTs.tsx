@@ -19,7 +19,7 @@ const NFTs: React.FC = () => (
   <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', justifyContent: 'center', fontFamily: 'inherit' }}>
       {/* Example NFT Card */}
   <div style={{ background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px #0001', padding: 24, width: 320, height: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24, fontFamily: 'inherit' }}>
-  <img src={exampleNft.image} alt={exampleNft.name} style={{ width: 300, height: 380, objectFit: 'cover', borderRadius: 14, marginBottom: 16, background: '#eee' }} />
+  <img src={exampleNft.image} alt={exampleNft.name} loading="lazy" style={{ width: 300, height: 380, objectFit: 'cover', borderRadius: 14, marginBottom: 16, background: '#eee' }} />
         <div style={{ fontWeight: 700, fontSize: 20, marginBottom: 6 }}>{exampleNft.name}</div>
         <div style={{ color: '#888', fontSize: 15, marginBottom: 10 }}>{exampleNft.creator}</div>
         <div style={{ color: '#444', fontSize: 15, marginBottom: 12 }}>{exampleNft.description}</div>

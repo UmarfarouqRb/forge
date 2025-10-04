@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FaUser, FaHeart, FaEye } from 'react-icons/fa';
 
 export const projectData = [
@@ -8,7 +8,7 @@ export const projectData = [
     image: '/mon.png',
     description: 'Monad is a high-performance blockchain platform for DeFi applications.',
     category: 'L1',
-    users: 123,
+    users: 323,
     followers: 200,
     likes: 20,
     watched: 10,
@@ -45,7 +45,7 @@ export const projectData = [
     image: 'pond.jpg',
     description: 'Pond connects liquidity providers and traders in a seamless DeFi ecosystem.',
     category: 'AI Project',
-    users: 98,
+    users: 250,
     followers: 150,
     likes: 15,
     watched: 7,
@@ -55,7 +55,29 @@ export const projectData = [
       <FaHeart key="like" style={{ color: '#e74c3c', fontSize: 13 }} />, 
       <FaEye key="watched" style={{ color: '#007bff', fontSize: 13 }} />
     ],
+
+    tasks: [
+      {
+        id: 1,
+        label: 'Visit Pond Website',
+        url: 'https://cryptopond.xyz/',
+        type: 'external',
+      },
+      {
+        id: 2,
+        label: 'Visit JoinPond Twitter',
+        url: 'https://x.com/JoinPond',
+        type: 'external',
+      },
+      {
+        id: 3,
+        label: 'Join Pond Discord',
+        url: 'https://discord.com/invite/T4PZHA9T94',
+        type: 'external',
+      },
+    ],
   },
+
   {
     id: 3,
     name: 'Forge',
@@ -71,6 +93,27 @@ export const projectData = [
       <FaUser key="user" style={{ color: '#23272f', fontSize: 13 }} />, 
       <FaHeart key="like" style={{ color: '#e74c3c', fontSize: 13 }} />, 
       <FaEye key="watched" style={{ color: '#007bff', fontSize: 13 }} />
+    ],
+
+    tasks: [
+      {
+        id: 1,
+        label: 'Visit Forge Website',
+        url: 'https://demo-forge.app.netlify.com',
+        type: 'external',
+      },
+      {
+        id: 2,
+        label: 'Visit Forge Twitter',
+        url: 'https://twitter.com/',
+        type: 'external',
+      },
+      {
+        id: 3,
+        label: 'Join Forge Discord',
+        url: 'https://discord.gg/',
+        type: 'external',
+      },
     ],
   },
 ];
