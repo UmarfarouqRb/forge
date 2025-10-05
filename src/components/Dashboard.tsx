@@ -1,4 +1,4 @@
-import React, { lazy, useState, useContext } from 'react';
+import React, { Suspense, lazy, useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import { usePrivy } from '@privy-io/react-auth';
 import UserProfile from './UserProfile';
@@ -178,11 +178,17 @@ const Dashboard: React.FC = () => {
           </nav>
         )}
         <main className="flex-grow-1 p-2" style={{ overflowY: 'auto', maxHeight: '100vh', paddingBottom: 4 }}>
-          <Routes>
-            {pageRoutes.map(route => (
-              <Route key={route.path} path={route.path.replace('/dashboard', '')} element={<route.component />} />
-            ))}
-          </Routes>
+          <Suspense fallback={
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+              <img src={loadingLogoSrc} alt="Loading..." style={{ width: 100, height: 100, borderRadius: 24 }} />
+            </div>
+          }>
+            <Routes>
+              {pageRoutes.map(route => (
+                <Route key={route.path} path={route.path.replace('/dashboard', '')} element={<route.component />} />
+              ))}
+            </Routes>
+          </Suspense>
         </main>
       </div>
     </div>
