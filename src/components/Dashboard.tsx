@@ -37,6 +37,7 @@ const Dashboard: React.FC = () => {
   const loadingLogoSrc = theme === 'dark' ? '/forge-1.0.jpg' : '/forge-2.2.png';
 
   // Find the current page based on the route
+  // Find the current page based on the route
   const currentPage = pageRoutes.find(r => location.pathname.startsWith(r.path)) || pageRoutes[0];
 
   if (!ready) {
@@ -184,8 +185,9 @@ const Dashboard: React.FC = () => {
             </div>
           }>
             <Routes>
+              <Route index element={React.createElement(pageRoutes[0].component)} />
               {pageRoutes.map(route => (
-                <Route key={route.path} path={route.path.replace('/dashboard', '')} element={<route.component />} />
+                <Route key={route.path} path={route.path.replace('/dashboard', '')} element={React.createElement(route.component)} />
               ))}
             </Routes>
           </Suspense>
