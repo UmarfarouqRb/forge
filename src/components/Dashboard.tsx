@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useContext } from 'react';
+import React, { lazy, useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import { usePrivy } from '@privy-io/react-auth';
 import UserProfile from './UserProfile';
