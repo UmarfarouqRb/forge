@@ -9,36 +9,35 @@ import { FaDiscord, FaStar, FaQuestionCircle } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import './Dashboard.css';
 import Login from '../providers/Login';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import FAQ from '../pages/FAQ';
 
-const pageNames = ['Project', 'Quest', 'swap', 'bridge', 'Perp', 'NFTs', 'Onchain', 'Airdrop'] as const;
-type PageName = typeof pageNames[number];
 
-const lazyComponents: Record<PageName, React.LazyExoticComponent<React.FC>> = {
-  Project: lazy(() => import('../pages/Project')),
-  Quest: lazy(() => import('../pages/Quest')),
-  swap: lazy(() => import('../pages/Swap')),
-  bridge: lazy(() => import('../pages/Bridge')),
-  Perp: lazy(() => import('../pages/Perp')),
-  NFTs: lazy(() => import('../pages/NFTs')),
-  Onchain: lazy(() => import('../pages/Onchain')),
-  Airdrop: lazy(() => import('../pages/Airdrop')),
-};
+const pageRoutes = [
+  { name: 'Project', path: '/dashboard/project', component: lazy(() => import('../pages/Project')) },
+  { name: 'Quest', path: '/dashboard/quest', component: lazy(() => import('../pages/Quest')) },
+  { name: 'swap', path: '/dashboard/swap', component: lazy(() => import('../pages/Swap')) },
+  { name: 'bridge', path: '/dashboard/bridge', component: lazy(() => import('../pages/Bridge')) },
+  { name: 'Perp', path: '/dashboard/perp', component: lazy(() => import('../pages/Perp')) },
+  { name: 'NFTs', path: '/dashboard/nfts', component: lazy(() => import('../pages/NFTs')) },
+  { name: 'Onchain', path: '/dashboard/onchain', component: lazy(() => import('../pages/Onchain')) },
+  { name: 'Airdrop', path: '/dashboard/airdrop', component: lazy(() => import('../pages/Airdrop')) },
+];
 
 
 const Dashboard: React.FC = () => {
-  const [selected, setSelected] = useState<PageName>('Project');
+
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const SelectedComponent = lazyComponents[selected];
   const { ready, authenticated } = usePrivy();
   const navigate = useNavigate();
-
   const handleNavIconClick = () => setSidebarOpen((open) => !open);
-
   const { theme } = useContext(ThemeContext);
   // Choose logo for loading state
   const loadingLogoSrc = theme === 'dark' ? '/forge-1.0.jpg' : '/forge-2.2.png';
+
+  // Find the current page based on the route
+  const currentPage = pageRoutes.find(r => location.pathname.startsWith(r.path)) || pageRoutes[0];
 
   if (!ready) {
     return (
@@ -67,17 +66,17 @@ const Dashboard: React.FC = () => {
               <ForgeLogoCard />
             </div>
             <ul className="nav flex-column" style={{ paddingTop: 0, marginTop: 0 }}>
-              {pageNames.map((name) => (
-                <li className="nav-item" key={name}>
+              {pageRoutes.map((route) => (
+                <li className="nav-item" key={route.name}>
                   <button
-                    className={`nav-link btn btn-link w-100 text-start d-flex align-items-center${selected === name ? ' active fw-bold' : ''}`}
-                    onClick={() => setSelected(name)}
+                    className={`nav-link btn btn-link w-100 text-start d-flex align-items-center${currentPage.name === route.name ? ' active fw-bold' : ''}`}
+                    onClick={() => navigate(route.path)}
                     style={{ gap: 10 }}
                   >
-                    <span style={{ minWidth: 22, display: 'inline-flex', justifyContent: 'center' }}>{sidebarIcons[name]}</span>
+                    <span style={{ minWidth: 22, display: 'inline-flex', justifyContent: 'center' }}>{sidebarIcons[route.name]}</span>
                     <span style={{ fontSize: '0.92rem', display: 'flex', alignItems: 'center', gap: 4 }}>
-                      {name}
-                      {name === 'Perp' && (
+                      {route.name}
+                      {route.name === 'Perp' && (
                         <>
                           <FaStar title="New" style={{ color: '#ffb300', fontSize: 16, marginLeft: 2, verticalAlign: 'middle' }} />
                           <span style={{ color: '#ffb300', fontWeight: 700, fontSize: 13, marginLeft: 2, letterSpacing: 1 }}>NEW</span>
@@ -179,9 +178,11 @@ const Dashboard: React.FC = () => {
           </nav>
         )}
         <main className="flex-grow-1 p-2" style={{ overflowY: 'auto', maxHeight: '100vh', paddingBottom: 4 }}>
-          <Suspense fallback={null}>
-            <SelectedComponent />
-          </Suspense>
+          <Routes>
+            {pageRoutes.map(route => (
+              <Route key={route.path} path={route.path.replace('/dashboard', '')} element={<route.component />} />
+            ))}
+          </Routes>
         </main>
       </div>
     </div>

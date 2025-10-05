@@ -105,8 +105,40 @@ const Swap: React.FC = () => {
 								<div style={{ textAlign: 'center', marginBottom: 0, marginTop: 8 }}>
 									<div style={{ fontSize: 22, fontWeight: 700, color: robotColor, marginBottom: 8, letterSpacing: 1 }}>Choose swap mode</div>
 																	<div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 18 }}>
-																		<button className={aiMode ? 'btn btn-primary' : ''} style={{ padding: '8px 18px', borderRadius: 8 }} onClick={() => setAiMode(true)}><FaRobot style={{ marginRight: 6 }} />Swap Agent</button>
-																		<button className={aiMode ? '' : 'btn btn-primary'} style={{ padding: '8px 18px', borderRadius: 8 }} onClick={() => setAiMode(false)}>Manual Swap</button>
+																		<button
+																			style={{
+																				padding: '8px 18px',
+																				borderRadius: 8,
+																				fontWeight: 700,
+																				border: aiMode ? '2px solid #2563eb' : '1px solid #bbb',
+																				background: aiMode ? 'linear-gradient(90deg,#2563eb 60%,#1e40af 100%)' : '#f5f7fa',
+																				color: aiMode ? '#fff' : '#23272f',
+																				boxShadow: aiMode ? '0 2px 8px #2563eb22' : 'none',
+																				transition: 'all 0.18s',
+																				outline: 'none',
+																				cursor: 'pointer',
+																			}}
+																			onClick={() => setAiMode(true)}
+																		>
+																			<FaRobot style={{ marginRight: 6 }} />Swap Agent
+																		</button>
+																		<button
+																			style={{
+																				padding: '8px 18px',
+																				borderRadius: 8,
+																				fontWeight: 700,
+																				border: !aiMode ? '2px solid #2563eb' : '1px solid #bbb',
+																				background: !aiMode ? 'linear-gradient(90deg,#2563eb 60%,#1e40af 100%)' : '#f5f7fa',
+																				color: !aiMode ? '#fff' : '#23272f',
+																				boxShadow: !aiMode ? '0 2px 8px #2563eb22' : 'none',
+																				transition: 'all 0.18s',
+																				outline: 'none',
+																				cursor: 'pointer',
+																			}}
+																			onClick={() => setAiMode(false)}
+																		>
+																			Manual Swap
+																		</button>
 																	</div>
 								</div>
 								<div className="swap-card" style={{...cardStyle, minHeight: 0, padding: '18px 18px 20px 18px'}}>
