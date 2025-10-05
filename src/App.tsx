@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Deposit from './pages/Deposit';
 import Withdraw from './pages/Withdraw';
 import History from './pages/History';
+import SwapBot from './pages/SwapBot';
 
 import { createContext, useState, useEffect } from 'react';
 import './App.css';
@@ -18,7 +19,6 @@ export const ThemeContext = createContext<{ theme: string; toggleTheme: () => vo
 function MainApp() {
   return <Dashboard />;
 }
-
 
 function App() {
   const getInitialTheme = () => {
@@ -47,6 +47,7 @@ function App() {
               <Route path="/history" element={<History />} />
               <Route path="/quest" element={<Quest />} />
               <Route path="/quest/:slug" element={<QuestDetail />} />
+              <Route path="/swap-bot" element={<SwapBot />} />
             </Routes>
           </Router>
         </UserProvider>

@@ -6,7 +6,9 @@ import { FaTwitter, FaDiscord } from 'react-icons/fa6';
 export interface ProjectProfileProps {
   name: string;
   image?: string;
-  users?: number;
+  users?: string;
+  followers?: string;
+  watched?: string;
   icons?: React.ReactNode;
   description?: string;
   category?: string;
@@ -15,10 +17,7 @@ export interface ProjectProfileProps {
 
 const defaultImage = 'https://ui-avatars.com/api/?name=Project&background=random';
 
-const ProjectProfile: React.FC<ProjectProfileProps> = ({ name, image, description, category }) => {
-  const [userCount, setUserCount] = React.useState<string[]>(['123']);
-  const [likeCount, setLikeCount] = React.useState<string[]>(['20']);
-  const [watchCount, setWatchCount] = React.useState<string[]>(['10']);
+const ProjectProfile: React.FC<ProjectProfileProps> = ({ name, image, description, category, users, followers, watched }) => {
   return (
   <Card style={{ position: 'relative', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: 340, minHeight: 340, height: 'auto', padding: 16, justifyContent: 'flex-start' }}>
       <img
@@ -57,33 +56,15 @@ const ProjectProfile: React.FC<ProjectProfileProps> = ({ name, image, descriptio
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center', marginLeft: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0 }}>
             <FaUser style={{ color: '#23272f', fontSize: 17 }} />
-            <input
-              type="text"
-              value={userCount.join(',')}
-              onChange={e => setUserCount(e.target.value.split(','))}
-              placeholder="user(s)"
-              style={{ width: 44, fontSize: 11, color: '#23272f', fontWeight: 500, border: '1px solid #ccc', borderRadius: 4, padding: '2px 4px', background: 'transparent', textAlign: 'center' }}
-            />
+            <span style={{ fontSize: 13, color: '#23272f', fontWeight: 500 }}>{users || '0'}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0 }}>
             <FaHeart style={{ color: '#e74c3c', fontSize: 17 }} />
-            <input
-              type="text"
-              value={likeCount.join(',')}
-              onChange={e => setLikeCount(e.target.value.split(','))}
-              placeholder="like(s)"
-              style={{ width: 44, fontSize: 11, color: '#e74c3c', fontWeight: 500, border: '1px solid #ccc', borderRadius: 4, padding: '2px 4px', background: 'transparent', textAlign: 'center' }}
-            />
+            <span style={{ fontSize: 13, color: '#e74c3c', fontWeight: 500 }}>{followers || '0'}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0 }}>
             <FaEye style={{ color: '#007bff', fontSize: 17 }} />
-            <input
-              type="text"
-              value={watchCount.join(',')}
-              onChange={e => setWatchCount(e.target.value.split(','))}
-              placeholder="watch(es)"
-              style={{ width: 44, fontSize: 11, color: '#007bff', fontWeight: 500, border: '1px solid #ccc', borderRadius: 4, padding: '2px 4px', background: 'transparent', textAlign: 'center' }}
-            />
+            <span style={{ fontSize: 13, color: '#007bff', fontWeight: 500 }}>{watched || '0'}</span>
           </div>
         </div>
       </div>

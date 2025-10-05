@@ -1,5 +1,6 @@
 
 
+
 import React, { useContext, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projectData } from '../data/projectData';
@@ -8,6 +9,55 @@ import { FaCheckCircle } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const QuestDetail: React.FC = () => {
+  const floatingBackBtn = (
+    <>
+      <button
+        onClick={() => navigate('/quest')}
+        style={{
+          position: 'fixed',
+          top: 16,
+          left: 16,
+          zIndex: 1001,
+          background: '#fff',
+          color: '#2563eb',
+          border: '1.5px solid #2563eb',
+          borderRadius: 24,
+          boxShadow: '0 2px 8px #0002',
+          padding: '8px 16px',
+          fontSize: 16,
+          fontWeight: 700,
+          display: 'none',
+          marginRight: 8
+        }}
+        className="floating-back-btn"
+        aria-label="Back to Quests"
+      >
+        &larr; Quests
+      </button>
+      <button
+        onClick={() => navigate('/dashboard')}
+        style={{
+          position: 'fixed',
+          top: 16,
+          left: 120,
+          zIndex: 1001,
+          background: '#fff',
+          color: '#23272f',
+          border: '1.5px solid #a47be2',
+          borderRadius: 24,
+          boxShadow: '0 2px 8px #0002',
+          padding: '8px 16px',
+          fontSize: 16,
+          fontWeight: 700,
+          display: 'none',
+        }}
+        className="floating-back-btn"
+        aria-label="Back to Dashboard"
+      >
+        &larr; Dashboard
+      </button>
+    </>
+  );
   const { slug } = useParams<{ slug: string }>();
   const quest = projectData.find(
     p => p.name.toLowerCase().replace(/\s+/g, '-') === (slug || '').toLowerCase()
@@ -41,8 +91,17 @@ const QuestDetail: React.FC = () => {
   if (!quest) return <div style={{ padding: 32 }}>Quest not found.</div>;
 
   return (
-    <div style={{ background: bg, minHeight: '100vh', padding: '32px 0', color: text }}>
-      <div style={{ maxWidth: 700, margin: '40px auto', background: cardBg, borderRadius: 16, boxShadow: navShadow, padding: 32, border }}>
+    <>
+      {floatingBackBtn}
+      <style>{`
+        @media (max-width: 700px) {
+          .floating-back-btn {
+            display: block !important;
+          }
+        }
+      `}</style>
+      <div style={{ background: bg, minHeight: '100vh', padding: '32px 0', color: text }}>
+        <div style={{ maxWidth: 700, margin: '40px auto', background: cardBg, borderRadius: 16, boxShadow: navShadow, padding: 32, border }}>
         <h2 style={{ fontWeight: 700, fontSize: 32, marginBottom: 12 }}>{quest.name}</h2>
         <img src={quest.image} alt={quest.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 16, marginBottom: 24 }} />
         <p style={{ fontSize: 18, color: text, marginBottom: 24 }}>{quest.description}</p>
@@ -95,8 +154,9 @@ const QuestDetail: React.FC = () => {
             &larr; Back to Quests
           </button>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

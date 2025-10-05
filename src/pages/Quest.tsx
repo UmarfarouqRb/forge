@@ -24,10 +24,10 @@ export type QuestItem = {
   completed: boolean;
   reward: string;
   status: 'active' | 'upcoming' | 'ended';
-  users: number;
-  followers: number;
-  likes: number;
-  watched: number;
+  users: string;
+  followers: string;
+  likes: string;
+  watched: string;
   tasks?: Array<{
     id: number;
     label: string;

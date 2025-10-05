@@ -8,16 +8,18 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { authenticated, user } = usePrivy();
   const [userData, setUserData] = useState<any>(null);
 
-  useEffect(() => {
-    if (authenticated && user) {
-      setUserData({
-        twitterHandle: user.twitter?.username ?? undefined,
-        profileImage: user.twitter?.profilePictureUrl ?? undefined,
-        email: user.email?.address ?? undefined,
-        wallet: user.wallet?.address ?? undefined,
-      });
-    }
-  }, [authenticated, user]);
+	useEffect(() => {
+		if (authenticated && user) {
+			setUserData({
+				twitterHandle: user.twitter?.username ?? undefined,
+				profileImage: user.twitter?.profilePictureUrl ?? undefined,
+				email: user.email?.address ?? undefined,
+				wallet: user.wallet?.address ?? undefined,
+				googleName: user.google?.name ?? undefined,
+				googleEmail: user.google?.email ?? undefined,
+			});
+		}
+	}, [authenticated, user]);
 
   return (
     <UserContext.Provider value={userData}>

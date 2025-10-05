@@ -15,6 +15,9 @@ const Project: React.FC = () => (
           description={project.description}
           category={project.category}
           icons={project.icons}
+          users={project.users}
+          followers={project.followers}
+          watched={project.watched}
         />
       </div>
     ))}
