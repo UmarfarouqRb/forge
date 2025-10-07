@@ -36,8 +36,8 @@ const Landing: React.FC = () => (
   <div className="landing-container" style={{paddingTop: 32, paddingBottom: 32, maxWidth: 600, margin: "64px auto 0 auto"}}>
         <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 48, flexWrap: 'wrap'}}>
           <div style={{flex: 1, minWidth: 320}}>
-            <h1 className="landing-hero" style={{fontSize: 44, marginBottom: 18, lineHeight: 1.1}}>Unleash Onchain Potential<br/><span style={{color:'#2563eb'}}>with AI & Community</span></h1>
-            <p className="landing-desc" style={{fontSize: 20, marginBottom: 28, color: '#444'}}>Forge is the all-in-one platform for onchain quests, AI trading agents, NFT rewards, and community-driven growth.<br/>Empowering users, projects, and investors to thrive in the new web3 economy.</p>
+            <h1 className="landing-hero" style={{fontSize: 56, marginBottom: 18, lineHeight: 1.05, color: '#181A20', textShadow: '0 4px 24px #2563eb33, 0 2px 0 #fff'}}>Unleash Web3 Potential<br/><span style={{color:'#2563eb', textShadow: '0 4px 18px #2563eb88, 0 2px 0 #fff'}}>with AI and AI Agents Platform</span></h1>
+            <p className="landing-desc" style={{fontSize: 22, marginBottom: 28, color: '#a47be2', opacity: 1, textShadow: '0 1px 3px #fff'}}>Forge is the all-in-one platform for onchain quests, AI trading agents, NFT rewards, and community-driven growth.<br/>Empowering users, projects, and investors to thrive in the new web3 economy.</p>
             <a href="/dashboard" className="landing-launch-btn" style={{fontSize: 22, padding: '16px 40px', marginBottom: 18, display: 'inline-block'}}>Launch App</a>
             <div style={{marginTop: 18, color: '#888', fontSize: 16}}>Built for <b>users</b>, <b>projects</b>, and <b>investors</b></div>
           </div>

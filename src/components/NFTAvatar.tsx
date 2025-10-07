@@ -55,7 +55,15 @@ const NFTAvatar: React.FC<NFTAvatarProps> = ({
       viewBox="0 0 180 180"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ borderRadius: "24px", boxShadow: "0 4px 24px #a47be244", background: "radial-gradient(circle at 60% 40%, #a47be2cc 0%, #fff0 80%)" }}
+      style={{
+        borderRadius: "32px",
+        boxShadow: "0 4px 16px #a47be222, 0 1px 8px #2563eb11",
+        background: "radial-gradient(circle at 60% 40%, #fff 0%, #a47be2cc 60%, #2563eb 100%)",
+        border: "4px solid #fff",
+        outline: "2px solid #a47be2",
+        outlineOffset: "-6px",
+        transition: "box-shadow 0.3s, outline 0.3s, border 0.3s"
+      }}
     >
       {/* Animated glowing background */}
       <circle cx="90" cy="90" r="88" stroke="url(#border)" strokeWidth="4" fill="none" />
