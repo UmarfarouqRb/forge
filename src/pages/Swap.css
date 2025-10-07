@@ -127,6 +127,44 @@
   padding: 0 10px;
 }
 
+@media (max-width: 600px) {
+  .swap-container {
+    max-width: 98vw;
+    margin: 16px auto;
+    padding: 0 2vw;
+  }
+  .swap-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .swap-card {
+    padding: 12px 4px 10px 4px;
+    gap: 10px;
+  }
+  .modern-swap-section {
+    padding: 8px 0 6px 0;
+    border-radius: 10px;
+  }
+  .swap-input-row {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 6px;
+  }
+  .swap-token-logo {
+    width: 22px;
+    height: 22px;
+  }
+  .swap-amount-input, .modern-amount-input {
+    font-size: 1.1rem;
+    padding: 6px 4px;
+  }
+  .swap-action-btn {
+    font-size: 1rem;
+    padding: 8px 0;
+  }
+}
+
+
 .swap-title {
   text-align: center;
   color: #eddec8;

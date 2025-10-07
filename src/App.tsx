@@ -4,11 +4,15 @@ import Quest from './pages/Quest';
 import { PrivyProvider } from '@privy-io/react-auth';
 import Login, { UserProvider } from './providers/Login';
 import Dashboard from './components/Dashboard';
+import FAQ from './pages/FAQ';
+import Landing from './pages/Landing';
+import Docs from './pages/Docs';
 import Profile from './pages/Profile';
 import Deposit from './pages/Deposit';
 import Withdraw from './pages/Withdraw';
 import History from './pages/History';
 import SwapBot from './pages/SwapBot';
+
 
 import { createContext, useState, useEffect } from 'react';
 import './App.css';
@@ -34,24 +38,36 @@ function App() {
   const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <PrivyProvider appId="cmfxwno3e00cfju0d96v0z9vm">
-        <UserProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/dashboard/*" element={<Dashboard />} />
-              <Route path="/app" element={<MainApp />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/deposit" element={<Deposit />} />
-              <Route path="/withdraw" element={<Withdraw />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/quest" element={<Quest />} />
-              <Route path="/quest/:slug" element={<QuestDetail />} />
-              <Route path="/swap-bot" element={<SwapBot />} />
-            </Routes>
-          </Router>
-        </UserProvider>
-      </PrivyProvider>
+      <Router>
+        <Routes>
+          {/* Public landing page route */}
+          <Route path="/" element={<Landing />} />
+          {/* All other routes inside providers (protected) */}
+          <Route
+            path="*"
+            element={
+              <PrivyProvider appId={import.meta.env.VITE_PRIVY_APP_ID}>
+                <UserProvider>
+                  <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard/*" element={<Dashboard />} />
+                    <Route path="/app" element={<MainApp />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/deposit" element={<Deposit />} />
+                    <Route path="/withdraw" element={<Withdraw />} />
+                    <Route path="/history" element={<History />} />
+                    <Route path="/quest" element={<Quest />} />
+                    <Route path="/quest/:slug" element={<QuestDetail />} />
+                    <Route path="/swap-bot" element={<SwapBot />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/docs" element={<Docs />} />
+                  </Routes>
+                </UserProvider>
+              </PrivyProvider>
+            }
+          />
+        </Routes>
+      </Router>
     </ThemeContext.Provider>
   );
 }

@@ -1,0 +1,342 @@
+/* Backed by Innovators section */
+.backed-section {
+  margin-top: 54px;
+  margin-bottom: 40px;
+  background: linear-gradient(120deg,#23233a 60%,#2563eb 100%);
+  border-radius: 28px;
+  box-shadow: 0 8px 48px #2563eb44, 0 2px 12px #a47be244;
+  padding: 44px 24px 36px 24px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #2563ebcc;
+  position: relative;
+  z-index: 2;
+  animation: gradientMove 8s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+.backed-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 32px;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 32px #2563ebcc, 0 2px 0 #23233a;
+  background: linear-gradient(90deg,#2563eb 10%,#a47be2 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.backed-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 44px;
+}
+.backed-logo-card {
+  background: rgba(36,36,56,0.98);
+  border-radius: 18px;
+  padding: 28px 24px 18px 24px;
+  text-align: center;
+  box-shadow: 0 4px 24px #2563eb44;
+  border: 1.5px solid #a47be288;
+  min-width: 180px;
+  max-width: 220px;
+  transition: transform 0.18s, box-shadow 0.18s, border 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.backed-logo-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 36px #a47be288, 0 2px 12px #2563eb55;
+  border-color: #fff;
+}
+.backed-logo-card svg {
+  margin-bottom: 12px;
+  filter: drop-shadow(0 2px 10px #2563ebcc);
+}
+.backed-logo-name {
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+/* Value Props Section - visually premium */
+.value-props-section {
+  margin-top: 56px;
+  margin-bottom: 40px;
+  background: linear-gradient(120deg,#23233a 60%,#a47be2 100%);
+  border-radius: 28px;
+  box-shadow: 0 8px 48px #a47be244, 0 2px 12px #2563eb33;
+  padding: 48px 24px 40px 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #a47be2cc;
+  position: relative;
+  z-index: 2;
+  animation: gradientMove 8s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.value-props-title {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 38px;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 32px #a47be2cc, 0 2px 0 #23233a;
+  background: linear-gradient(90deg,#a47be2 10%,#2563eb 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.value-props-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+}
+.value-prop-card {
+  flex: 1;
+  min-width: 260px;
+  max-width: 340px;
+  background: rgba(36,36,56,0.98);
+  border-radius: 22px;
+  padding: 38px;
+  text-align: center;
+  box-shadow: 0 6px 32px #a47be244;
+  border: 1.5px solid #2563eb88;
+  transition: transform 0.22s, box-shadow 0.22s, border 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+.value-prop-card:nth-child(2) {
+  border: 1.5px solid #a47be288;
+}
+.value-prop-card:nth-child(3) {
+  border: 1.5px solid #16c78488;
+}
+.value-prop-card:hover {
+  transform: translateY(-10px) scale(1.045);
+  box-shadow: 0 16px 48px #a47be288, 0 2px 16px #2563eb55;
+  border-color: #fff;
+}
+.value-prop-card svg {
+  margin-bottom: 16px;
+  filter: drop-shadow(0 2px 12px #a47be2cc);
+}
+.value-prop-card .card-title {
+  font-weight: 900;
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.value-prop-card .card-desc {
+  margin-top: 8px;
+  color: #e0e7ff;
+  font-size: 19px;
+  font-weight: 500;
+}
+/* Black, modern, vibrant background with animated gradients */
+/* Full-page animated gradient background for premium look */
+.landing-bg {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  background: linear-gradient(135deg, #181824 0%, #23233a 40%, #a47be2 100%);
+  color: #f5f5f7;
+  font-family: 'Inter', 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+/* Remove before/after, use only the main gradient for clarity and performance */
+
+/* Animated background shapes */
+.landing-bg::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 60% 40%, #a47be2cc 0%, #fff0 80%);
+  filter: blur(12px);
+  z-index: 0;
+  animation: float1 8s ease-in-out infinite alternate;
+}
+.landing-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at 40% 60%, #2563ebcc 0%, #fff0 80%);
+  filter: blur(16px);
+  z-index: 0;
+  animation: float2 10s ease-in-out infinite alternate;
+}
+@keyframes float1 {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(40px) scale(1.08); }
+}
+@keyframes float2 {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-30px) scale(1.05); }
+}
+.landing-navbar {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 12px #0001;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+.landing-navbar-content {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+.landing-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.landing-logo {
+  height: 38px;
+  width: 38px;
+  border-radius: 8px;
+}
+.landing-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #a47be2;
+  letter-spacing: 1px;
+}
+.landing-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.landing-links a {
+  color: #23272f;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.landing-links a.active, .landing-links a:hover {
+  color: #a47be2;
+}
+.landing-social {
+  display: flex;
+  gap: 18px;
+  font-size: 1.7rem;
+}
+.landing-container {
+  background: rgba(24, 24, 32, 0.96);
+  border-radius: 36px;
+  box-shadow: 0 12px 64px #000b, 0 2px 12px #a47be244;
+  max-width: 1200px;
+  margin: 64px auto 0 auto;
+  text-align: center;
+  padding: 72px 32px 64px 32px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  border: 2px solid #a47be2cc;
+}
+.landing-hero {
+  color: #fff;
+  font-size: 3.8rem;
+  font-weight: 900;
+  margin-bottom: 22px;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 32px #a47be2cc, 0 2px 0 #23233a;
+  background: linear-gradient(90deg,#a47be2 10%,#2563eb 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.landing-desc {
+  color: #e0e7ff;
+  font-size: 1.55rem;
+  margin-bottom: 38px;
+  font-weight: 600;
+  text-shadow: 0 2px 8px #23233a;
+}
+.landing-launch-btn {
+  display: inline-block;
+  background: linear-gradient(90deg,#a47be2 10%,#2563eb 90%);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.6rem;
+  padding: 24px 64px;
+  border-radius: 22px;
+  text-decoration: none;
+  box-shadow: 0 10px 40px #2563eb77, 0 2px 12px #a47be244;
+  margin-bottom: 38px;
+  margin-top: 18px;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 1.3px;
+  border: none;
+}
+.landing-launch-btn:hover {
+  background: linear-gradient(90deg,#2563eb 10%,#a47be2 90%);
+  transform: translateY(-3px) scale(1.07);
+  box-shadow: 0 16px 60px #2563ebbb;
+}
+.landing-features {
+  margin-top: 40px;
+  text-align: left;
+  background: linear-gradient(90deg,#23233a 60%,#a47be2 100%);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px #a47be244;
+  padding: 32px 24px 24px 24px;
+}
+.landing-features h2 {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.landing-features ul {
+  color: #e0e7ff;
+  font-size: 1.18rem;
+  line-height: 1.8;
+  margin-left: 18px;
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .landing-container {
+    padding: 18px 2vw 12px 2vw;
+    max-width: 99vw;
+  }
+  .landing-hero {
+    font-size: 2.2rem;
+  }
+  .landing-desc {
+    font-size: 1.18rem;
+  }
+  .landing-features h2 {
+    font-size: 1.2rem;
+  }
+  .landing-launch-btn {
+    font-size: 1.1rem;
+    padding: 14px 24px;
+  }
+}

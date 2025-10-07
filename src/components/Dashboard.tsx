@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
   // Choose logo for loading state
   const loadingLogoSrc = theme === 'dark' ? '/forge-1.0.jpg' : '/forge-2.2.png';
 
-  // Find the current page based on the route
+  
   // Find the current page based on the route
   const currentPage = pageRoutes.find(r => location.pathname.startsWith(r.path)) || pageRoutes[0];
 

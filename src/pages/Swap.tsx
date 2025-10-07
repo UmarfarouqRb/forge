@@ -1,4 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Wallet, JsonRpcProvider, Contract, formatUnits } from 'ethers';
+import { PoolFetcher, PathFinder, TokenSwap } from '@kuru-labs/kuru-sdk';
+// Use environment variables for config (Vite: import.meta.env)
+const rpcUrl = import.meta.env.VITE_KURU_RPC_URL || import.meta.env.KURU_API;
+const routerAddress = import.meta.env.VITE_KURU_ROUTER_ADDRESS;
+const privateKey = import.meta.env.VITE_PRIVATE_KEY || import.meta.env.PRIVATE_KEY;
+
+const ERC20_ABI = ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"];
 import { ThemeContext } from '../App';
 import ToggleSwitch from '../components/ToggleSwitch';
 import { UserContext } from '../providers/Login';
@@ -23,6 +31,23 @@ import SuccessModal from '../components/SuccessModal';
 import usdcLogo from '/usdc.png';
 import monLogo from '/mon.png';
 
+
+// Token details for Kuru SDK (replace with actual addresses/decimals for Monad network)
+const tokenDetails: Record<string, { address: string; decimals: number }> = {
+	ETH: {
+		address: '0x0000000000000000000000000000000000000000', // Native ETH (use WETH address if needed)
+		decimals: 18,
+	},
+	USDC: {
+		address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // Example: Ethereum USDC, replace for Monad
+		decimals: 6,
+	},
+	MON: {
+		address: '0x0000000000000000000000000000000000000001', // Placeholder, replace with actual MON address
+		decimals: 18,
+	},
+};
+
 const tokens = [
 	{ symbol: 'ETH', name: 'Ethereum', logo: ethLogo },
 	{ symbol: 'USDC', name: 'USD Coin', logo: usdcLogo },
@@ -32,44 +57,41 @@ const tokens = [
 
 
 const Swap: React.FC = () => {
+
+	const [quote, setQuote] = useState<string>('');
+	const [useExternalWallet, setUseExternalWallet] = useState(false);
 	const [aiMode, setAiMode] = useState(false);
-	// For AI mode
 	const [command, setCommand] = useState('');
-	const [aiFromToken, setAiFromToken] = useState('ETH');
-	const [aiToToken, setAiToToken] = useState('USDC');
-	const [aiAmount, setAiAmount] = useState('');
-	const [aiResult, setAiResult] = useState<string | null>(null);
-	const [aiLoading, setAiLoading] = useState(false);
-	useEffect(() => {
-		if (!aiMode) return;
-		const match = command.match(/swap\s+(\d+(?:\.\d+)?)\s+(\w+)\s+to\s+(\w+)/i);
-		if (match) {
-			setAiAmount(match[1]);
-			setAiFromToken(match[2].toUpperCase());
-			setAiToToken(match[3].toUpperCase());
-		}
-	}, [command, aiMode]);
-	const { theme } = useContext(ThemeContext);
+	const user = useContext(UserContext) as { wallet?: string } | null;
+	const [fromBalance, setFromBalance] = useState<string>('0');
+	const [toBalance, setToBalance] = useState<string>('0');
 	const [fromToken, setFromToken] = useState(tokens[2]); // Default to MON
 	const [toToken, setToToken] = useState(tokens[1]);
 	const [amount, setAmount] = useState('');
 	const [toAmount, setToAmount] = useState('');
-	// const [network, setNetwork] = useState<'mainnet' | 'testnet'>('mainnet');
-		const [showSuccess, setShowSuccess] = useState(false);
-		const [successMsg, setSuccessMsg] = useState('');
+	const [showSuccess, setShowSuccess] = useState(false);
+	 const [successMsg, setSuccessMsg] = useState('');
+	 const [swapLoading, setSwapLoading] = useState(false);
+	 // AI mode state
+	 const [aiFromToken, setAiFromToken] = useState('ETH');
+	 const [aiToToken, setAiToToken] = useState('USDC');
+	 const [aiAmount, setAiAmount] = useState('');
+	 const [aiLoading, setAiLoading] = useState(false);
+	 const [aiResult, setAiResult] = useState<string | null>(null);
+
+	 // Placeholder handleSwap function
+	 const handleSwap = () => {
+		 setSwapLoading(true);
+		 setTimeout(() => {
+			 setSuccessMsg('Swap simulated!');
+			 setShowSuccess(true);
+			 setSwapLoading(false);
+		 }, 1200);
+	 };
+	const { theme } = useContext(ThemeContext);
 
 
-		const handleSwap = () => {
-			if (!amount) return;
-			if (fromToken.symbol === toToken.symbol) {
-				alert('Please select different tokens to swap.');
-				return;
-			}
-			setSuccessMsg(`Successfully swapped ${amount} ${fromToken.symbol} for ${(parseFloat(amount) * 0.99).toFixed(4)} ${toToken.symbol} on testnet.`);
-			setShowSuccess(true);
-			setAmount('');
-			setToAmount('');
-		};
+
 
 	const handleSwitch = () => {
 		// Also swap tokens and input values
@@ -231,7 +253,7 @@ const Swap: React.FC = () => {
 												<div className="swap-input-label" style={{ marginLeft: 18, marginTop: 2 }}>From</div>
 												<div className="swap-balance-row" style={{ marginTop: 2, marginLeft: 18, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
 													<FaWallet style={{ color: '#2563eb', fontSize: 18 }} />
-													<span className="swap-balance-value">{fromToken.symbol === 'ETH' ? '1.234' : fromToken.symbol === 'USDC' ? '500.00' : '10000.0'} {fromToken.symbol}</span>
+																	<span className="swap-balance-value">{parseFloat(fromBalance).toFixed(4)} {fromToken.symbol}</span>
 												</div>
 												{/* SWITCH BUTTON */}
 												<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 0 0 0' }}>
@@ -258,16 +280,37 @@ const Swap: React.FC = () => {
 														value={toAmount}
 														readOnly
 													/>
+													{quote && (
+														<div style={{ marginLeft: 18, marginTop: 4, color: '#2563eb', fontWeight: 500 }}>
+															Quote: {amount} {fromToken.symbol} ≈ {quote} {toToken.symbol}
+														</div>
+													)}
 												</div>
 												<div className="swap-input-label" style={{ marginLeft: 18, marginTop: 2 }}>To</div>
 												<div className="swap-balance-row" style={{ marginTop: 2, marginLeft: 18, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
 													<FaWallet style={{ color: '#2563eb', fontSize: 18 }} />
-													<span className="swap-balance-value">{toToken.symbol === 'ETH' ? '1.234' : toToken.symbol === 'USDC' ? '500.00' : '10000.0'} {toToken.symbol}</span>
+																	<span className="swap-balance-value">{parseFloat(toBalance).toFixed(4)} {toToken.symbol}</span>
 												</div>
 											</div>
-											<button className="swap-action-btn" onClick={handleSwap} disabled={!amount || fromToken.symbol === toToken.symbol}>
-												Swap
-											</button>
+											{!user?.wallet && !useExternalWallet ? (
+												<button className="swap-action-btn" onClick={() => setUseExternalWallet(true)}>
+													Connect Wallet
+												</button>
+											) : (
+												<button className="swap-action-btn" onClick={handleSwap} disabled={!amount || fromToken.symbol === toToken.symbol || swapLoading}>
+													{swapLoading ? 'Swapping...' : 'Swap'}
+												</button>
+											)}
+											{user?.wallet && !useExternalWallet && (
+												<button style={{marginTop:8}} onClick={() => setUseExternalWallet(true)}>
+													Use External Wallet
+												</button>
+											)}
+											{useExternalWallet && (
+												<button style={{marginTop:8}} onClick={() => setUseExternalWallet(false)}>
+													Use Privy Wallet
+												</button>
+											)}
 										</>
 									)}
 								</div>
