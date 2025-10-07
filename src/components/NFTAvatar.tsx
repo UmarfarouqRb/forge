@@ -29,8 +29,8 @@ const NFTAvatar: React.FC<NFTAvatarProps> = ({
 
   useEffect(() => {
     if (!animateEyes) return;
-    let blinkTimeout: NodeJS.Timeout;
-    let blinkInterval: NodeJS.Timeout;
+  let blinkTimeout: number;
+  let blinkInterval: number;
     const blink = () => {
       if (leftEyeRef.current && rightEyeRef.current) {
         leftEyeRef.current.setAttribute('r', '2');

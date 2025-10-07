@@ -1,12 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Wallet, JsonRpcProvider, Contract, formatUnits } from 'ethers';
-import { PoolFetcher, PathFinder, TokenSwap } from '@kuru-labs/kuru-sdk';
-// Use environment variables for config (Vite: import.meta.env)
-const rpcUrl = import.meta.env.VITE_KURU_RPC_URL || import.meta.env.KURU_API;
-const routerAddress = import.meta.env.VITE_KURU_ROUTER_ADDRESS;
-const privateKey = import.meta.env.VITE_PRIVATE_KEY || import.meta.env.PRIVATE_KEY;
-
-const ERC20_ABI = ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"];
+import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import ToggleSwitch from '../components/ToggleSwitch';
 import { UserContext } from '../providers/Login';
@@ -32,21 +24,7 @@ import usdcLogo from '/usdc.png';
 import monLogo from '/mon.png';
 
 
-// Token details for Kuru SDK (replace with actual addresses/decimals for Monad network)
-const tokenDetails: Record<string, { address: string; decimals: number }> = {
-	ETH: {
-		address: '0x0000000000000000000000000000000000000000', // Native ETH (use WETH address if needed)
-		decimals: 18,
-	},
-	USDC: {
-		address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // Example: Ethereum USDC, replace for Monad
-		decimals: 6,
-	},
-	MON: {
-		address: '0x0000000000000000000000000000000000000001', // Placeholder, replace with actual MON address
-		decimals: 18,
-	},
-};
+
 
 const tokens = [
 	{ symbol: 'ETH', name: 'Ethereum', logo: ethLogo },
@@ -58,13 +36,13 @@ const tokens = [
 
 const Swap: React.FC = () => {
 
-	const [quote, setQuote] = useState<string>('');
+	const [quote] = useState<string>('');
 	const [useExternalWallet, setUseExternalWallet] = useState(false);
 	const [aiMode, setAiMode] = useState(false);
 	const [command, setCommand] = useState('');
 	const user = useContext(UserContext) as { wallet?: string } | null;
-	const [fromBalance, setFromBalance] = useState<string>('0');
-	const [toBalance, setToBalance] = useState<string>('0');
+	const [fromBalance] = useState<string>('0');
+	const [toBalance] = useState<string>('0');
 	const [fromToken, setFromToken] = useState(tokens[2]); // Default to MON
 	const [toToken, setToToken] = useState(tokens[1]);
 	const [amount, setAmount] = useState('');
@@ -73,9 +51,9 @@ const Swap: React.FC = () => {
 	 const [successMsg, setSuccessMsg] = useState('');
 	 const [swapLoading, setSwapLoading] = useState(false);
 	 // AI mode state
-	 const [aiFromToken, setAiFromToken] = useState('ETH');
-	 const [aiToToken, setAiToToken] = useState('USDC');
-	 const [aiAmount, setAiAmount] = useState('');
+	const [aiFromToken] = useState('ETH');
+	const [aiToToken] = useState('USDC');
+	const [aiAmount] = useState('');
 	 const [aiLoading, setAiLoading] = useState(false);
 	 const [aiResult, setAiResult] = useState<string | null>(null);
 
